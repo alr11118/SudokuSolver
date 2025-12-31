@@ -8,32 +8,30 @@ def print_board(board):
 def count_empty_cells(board):
     return np.sum(board == 0)
 
-# Find a better way to check them (doesnt work on 3 wrong places)
+# Checks if there is any repeated numbers in ROWS
 def checkRow (board, rowNum):
-    total = 0
-    for i in range (sudokuSize):
-        total += board[rowNum][i]
-    if neededTotal == total:
-        print("Good row")
-        return True
-    else:
-        print("Bad row")
-        return False
-    
-def checkColumn (board, columnNum):
-    total = 0
-    for i in range (sudokuSize):
-        total += board[i][columnNum]
-    if neededTotal == total:
-        print("Good column")
-        return True
-    else:
-        print("Bad column")
-        return False
+    row = board[rowNum]
+    for i in range (len(row)):
+        for j in range (len(row)):
+            if row[j] == row[i]:
+                print("Bad row")
+                return False
+    print("Good row")
+    return True 
+# Checks if there is any repeated numbers in COLUMNS
+def checkColumn (board, ColumnNum):
+    column = board[ColumnNum]
+    for i in range (len(column)):
+        for j in range (len(column)):
+            if column[j] == column[i]:
+                print("Bad column")
+                return False
+    print("Good column")
+    return True 
 
 
 
-board = np.array([[1, 2, 3, 2],
+board = np.array([[2, 2, 4, 2],
                   [1, 4, 3, 2],
                   [1, 2, 3, 2],
                   [1, 2, 3, 2]])
