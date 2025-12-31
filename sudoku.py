@@ -25,5 +25,7 @@ board = np.array([[1, 2, 0, 0, 3, 2],
                   [1, 2, 0, 0, 3, 2]])
 print_board(board)
 empty_cells = count_empty_cells(board)
+
+
 print(f"Number of empty cells: {empty_cells}")
-print(f"number of possible combinations {3**empty_cells}")
+print(f"number of possible combinations {sudokuSize**empty_cells}")
