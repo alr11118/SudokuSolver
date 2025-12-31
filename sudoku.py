@@ -2,15 +2,10 @@ import numpy as np
 sudokuSize = 3
 def print_board(board):
     for i in range(sudokuSize*2):
-        """""
-        if i == sudokuSize:
-            print("-------------")
-        """""
-        for j in range(sudokuSize*2):
-            if j == sudokuSize:
-                print("| ", end="")
-            print(board[i][j], end=" ")
-        print("\n")
+        print(board[i])
+
+def count_empty_cells(board):
+    return np.sum(board == 0)
 
 """""Example usage:
 board = [[5, 3, 0, 0, 7, 0, 0, 0],
@@ -29,3 +24,6 @@ board = np.array([[1, 2, 0, 0, 3, 2],
                   [1, 2, 0, 0, 3, 2],
                   [1, 2, 0, 0, 3, 2]])
 print_board(board)
+empty_cells = count_empty_cells(board)
+print(f"Number of empty cells: {empty_cells}")
+print(f"number of possible combinations {3**empty_cells}")
