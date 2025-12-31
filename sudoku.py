@@ -13,7 +13,7 @@ def checkRow (board, rowNum):
     row = board[rowNum]
     for i in range (len(row)):
         for j in range (i+1, len(row)):
-            if row[j] == row[i]:
+            if row[j] == row[i] or row[i] > sudokuSize or row[i] < 1:
                 #print("Bad row")
                 return False
     #print("Good row")
@@ -23,7 +23,7 @@ def checkColumn (board, ColumnNum):
     column = board[ColumnNum]
     for i in range (len(column)):
         for j in range (i+1, len(column)):
-            if column[j] == column[i]:
+            if column[j] == column[i] or column[i] > sudokuSize or column[i] < 1:
                 #print("Bad column")
                 return False
     #print("Good column")
@@ -48,9 +48,14 @@ board2 = np.array([[1, 4, 3, 2],
                    [3, 4, 1, 4],
                    [4, 1, 2, 3],
                    [2, 3, 4, 1]])
+board3 = np.array([[1, 4, 3, 2],
+                   [3, 8, 1, 4],
+                   [4, 1, 2, 3],
+                   [2, 3, 4, 1]])
 empty_cells = count_empty_cells(board)
 
 checkBoard(board)
 checkBoard(board2)
+checkBoard(board3)
 print(f"Number of empty cells: {empty_cells}")
 print(f"number of possible combinations {sudokuSize**empty_cells}")
