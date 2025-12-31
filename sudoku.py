@@ -1,10 +1,11 @@
 import numpy as np
 sudokuSize = 4
-neededTotal = 4+3+2+1
+# Prints the board in a demure and readable way 
 def print_board(board):
     for i in range(sudokuSize):
         print(board[i])
 
+# Counts the number of empty shells
 def count_empty_cells(board):
     return np.sum(board == 0)
 
@@ -18,6 +19,7 @@ def checkRow (board, rowNum):
                 return False
     #print("Good row")
     return True 
+
 # Checks if there is any repeated numbers in COLUMNS
 def checkColumn (board, ColumnNum):
     column = board[ColumnNum]
@@ -29,6 +31,7 @@ def checkColumn (board, ColumnNum):
     #print("Good column")
     return True 
 
+# Checks board for unavlible placements using the checkColumn() and checkRow()
 def checkBoard (board):
     for i in range(sudokuSize):
         if (checkRow(board, i) != True):
@@ -44,18 +47,10 @@ board = np.array([[1, 4, 3, 2],
                   [3, 2, 1, 4],
                   [4, 1, 2, 3],
                   [2, 3, 4, 1]])
-board2 = np.array([[1, 4, 3, 2],
-                   [3, 4, 1, 4],
-                   [4, 1, 2, 3],
-                   [2, 3, 4, 1]])
-board3 = np.array([[1, 4, 3, 2],
-                   [3, 8, 1, 4],
-                   [4, 1, 2, 3],
-                   [2, 3, 4, 1]])
+
 empty_cells = count_empty_cells(board)
 
 checkBoard(board)
-checkBoard(board2)
-checkBoard(board3)
+
 print(f"Number of empty cells: {empty_cells}")
 print(f"number of possible combinations {sudokuSize**empty_cells}")
