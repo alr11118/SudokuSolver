@@ -1,15 +1,34 @@
+# ONLY WORKS FOR 4X4 BOARDS
 import numpy as np
-import random
 sudokuSize = 4
+neededList = np.array([1, 2, 3, 4])
+
+board = np.array([[1, 4, 3, 2],
+                  [3, 0, 1, 4],
+                  [4, 1, 2, 3],
+                  [2, 3, 4, 1]])
+
+# Creates the Squares for later checking
+def checkSquares(board, sudokuSize):
+    square1 = np.array([board[0][0], board[0][1], board[1][0], board[1][1]])
+    print(square1)
+    square2 = np.array([board[0][2], board[0][3], board[1][2], board[1][3]])
+    print(square2)
+    square3 = np.array([board[2][0], board[2][1], board[3][0], board[3][1]])
+    print(square3)
+    square4 = np.array([board[2][2], board[2][3], board[3][2], board[3][3]])
+    print(square4)
+    for i in range (sudokuSize):
+        if neededList[i] in square1 and neededList[i] in square2 and neededList[i] in square3 and neededList[i] in square4:
+            pass
+        else:
+            return False
+    return True
+
 # Prints the board in a demure and readable way 
 def print_board(board):
     for i in range(sudokuSize):
         print(board[i])
-
-# Counts the number of empty shells
-def count_empty_cells(board):
-    return np.sum(board == 0)
-
 
 # Checks if there is any repeated numbers in ROWS
 def checkRow (board, rowNum):
@@ -33,49 +52,37 @@ def checkColumn (board, ColumnNum):
     #print("Good column")
     return True 
 
+
+
+
+# Counts the number of empty shells
+def count_empty_cells(board):
+    return np.sum(board == 0)
+
 # Checks board for unavlible placements using the checkColumn() and checkRow()
 def checkBoard (board):
+    if (checkSquares(board, sudokuSize) != True):
+            print("Board is bad because of squares")
+            return False
     for i in range(sudokuSize):
         if (checkRow(board, i) != True):
-            #print("Board is bad")
+            print("Board is bad")
             return False
         if (checkColumn(board, i) != True):
-            #print("Board is bad")
+            #rint("Board is bad")
             return False
-    #print("Board is good")
+    print("Board is good")
     return True
 
-Eboard = np.array([[1, 4, 3, 2],
-                   [3, 0, 1, 4],
-                   [4, 1, 2, 3],
-                   [2, 3, 4, 1]])
 
-empty_cells = count_empty_cells(Eboard)
-emptyCoordinates = np.argwhere(Eboard == 0)
 
-checkBoard(Eboard)
+empty_cells = count_empty_cells(board)
+emptyCoordinates = np.argwhere(board == 0)
+
+checkBoard(board)
 
 print(f"Number of empty cells: {empty_cells}")
 print(f"number of possible combinations {sudokuSize**empty_cells}")
 print (emptyCoordinates)
 
 
-# Try Many Random Solutions
-solved = False
-numAttempts = 0
-while (solved != True and numAttempts < 100000):
-    # Generate/reset the solution set
-    test = Eboard.copy()
-    numAttempts +=1
-    # Generate the posible conbination & Place it 
-    for j in range (empty_cells):
-        #posible = np.append(posible, random.randint(1, sudokuSize))
-        test [emptyCoordinates[j]] = random.randint(1, sudokuSize)
-        #print(posible)
-
-    # Test it & Return the current one if it works
-    if (checkBoard(test) == True):
-        print_board(test)
-        solved = True
-
-print("Not solved")
