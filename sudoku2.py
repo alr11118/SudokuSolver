@@ -19,6 +19,7 @@ def checkSquares(board, sudokuSize):
     square4 = np.array([board[2][2], board[2][3], board[3][2], board[3][3]])
     print(square4)
     for i in range (sudokuSize):
+        #Add aparantesis to make it organised
         if neededList[i] in square1 and neededList[i] in square2 and neededList[i] in square3 and neededList[i] in square4:
             pass
         else:
@@ -30,6 +31,7 @@ def print_board(board):
     for i in range(sudokuSize):
         print(board[i])
 
+#Test these functions!!!!!!!!!
 # Checks if there is any repeated numbers in ROWS
 def checkRow (board, rowNum):
     row = board[rowNum]
@@ -54,7 +56,7 @@ def checkColumn (board, ColumnNum):
 
 
 
-
+# Is it really necesarry????
 # Counts the number of empty shells
 def count_empty_cells(board):
     return np.sum(board == 0)
@@ -84,5 +86,13 @@ checkBoard(board)
 print(f"Number of empty cells: {empty_cells}")
 print(f"number of possible combinations {sudokuSize**empty_cells}")
 print (emptyCoordinates)
+
+#Find where cordinates are 0
+# Go trough rows and coulnms if they have any 0's in them is so how many
+# if there is just one zero (creat a fix function earlier) and fix it    
+# OR make a fix function that is called on 0 points that tryes fixing buy row and does if there is more then 2 msiing in the row tryies fixing by coumn and if that doesnt work leaves it as it is.
+# The fix method gets called on 0 points as long as they exist and finds 0 points everyloop.
+#(edit the check functions to return an int (0-infinty) to show how many pieces are missin on that row??? 
+# OR ) 
 
 
