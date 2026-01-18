@@ -43,11 +43,19 @@ def valid(board, number, position):
             return False
     
     # Check Column
-    for i in range (len(board)):  # Loop tru the columns of that row
+    for i in range (len(board)):  # Loop tru the rows of that column
         if board[i][position[0]] == number and position[0] != i:
             return False
     
     # Check square
+    # Figure out which box you are at
+    boxX = position[1] // 3
+    boxY = position[0] // 3
+    for i in range (boxY*3, boxY*3 + 3):
+        for j in range (boxX*3, boxX*3 + 3):
+            if board[i][j] == num and (i, j) != position:
+                return False
+
 
 printBoard(board)
 print(findEmpty(board))
