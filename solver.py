@@ -25,14 +25,19 @@ def solve(board):
     else:
         row, column = find
 
+    # Try all values for that empty space
     for i in range (1, len(board)+1):
-        if valid(board, i, (row, column)):
+        # If that value is valid add that to the board
+        if valid(board, i, (row, column)): 
             board [row][column] = i
 
+            # Call on solve again recursevly untill the board is solved
             if solve(board):
                 return True
             
+            # If the call to solve doest work backtarck by setting the last variable to 0
             board [row][column] = 0
+    # If the current call to solve cannot find a valid value return false to backtrack in the previus loop
     return False
     
 
