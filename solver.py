@@ -69,7 +69,7 @@ def valid(board, number, position):
     
     # Check Column
     for i in range (len(board)):  # Loop tru the rows of that column
-        if board[i][position[0]] == number and position[0] != i:
+        if board[i][position[1]] == number and position[0] != i:
             return False
     
     # Check square
