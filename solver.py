@@ -16,6 +16,26 @@ board = [
     [0, 4, 9, 2, 0, 6, 0, 0, 7]
 ]
 
+def solve(board):
+    # Finish the solve loop if the board is not comptleted
+    # Find the first empty space
+    find = findEmpty(board)
+    if not find:
+        return True
+    else:
+        row, column = find
+
+    for i in range (1, len(board)+1):
+        if valid(board, i, (row, column)):
+            board [row][column] = i
+
+            if solve(board):
+                return True
+            
+            board [row][column] = 0
+    return False
+    
+
 def printBoard(board):
 
     for i in range (len(board)):
@@ -35,6 +55,7 @@ def findEmpty(board):
         for j in range (len(board[0])):
             if board[i][j] == 0:
                 return (i, j) # (row, column) 
+    return None
 
 def valid(board, number, position):
     # Check row
