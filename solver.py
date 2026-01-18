@@ -21,7 +21,6 @@ def printBoard(board):
     for i in range (len(board)):
         if i % 3 == 0 and i != 0:
             print("------------------------")
-
         for j in range (len(board[0])):
             if j % 3 == 0 and j != 0:
                 print(" | ", end="")
@@ -36,6 +35,19 @@ def findEmpty(board):
         for j in range (len(board[0])):
             if board[i][j] == 0:
                 return (i, j) # (row, column) 
+
+def valid(board, number, position):
+    # Check row
+    for i in range (len(board[0])):  # Loop tru the columns of that row
+        if board[position[0]][i] == number and position[1] != i:
+            return False
+    
+    # Check Column
+    for i in range (len(board)):  # Loop tru the columns of that row
+        if board[i][position[0]] == number and position[0] != i:
+            return False
+    
+    # Check square
 
 printBoard(board)
 print(findEmpty(board))
