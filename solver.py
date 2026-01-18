@@ -40,7 +40,6 @@ def solve(board):
     # If the current call to solve cannot find a valid value return false to backtrack in the previus loop
     return False
     
-
 def printBoard(board):
 
     for i in range (len(board)):
@@ -79,9 +78,11 @@ def valid(board, number, position):
     boxY = position[0] // 3
     for i in range (boxY*3, boxY*3 + 3):
         for j in range (boxX*3, boxX*3 + 3):
-            if board[i][j] == num and (i, j) != position:
+            if board[i][j] == number and (i, j) != position:
                 return False
     return True
 
 printBoard(board)
-print(findEmpty(board))
+solve(board)
+print(" ")
+printBoard(board)
