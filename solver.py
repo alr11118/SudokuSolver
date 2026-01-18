@@ -55,7 +55,7 @@ def valid(board, number, position):
         for j in range (boxX*3, boxX*3 + 3):
             if board[i][j] == num and (i, j) != position:
                 return False
-
+    return True
 
 printBoard(board)
 print(findEmpty(board))
