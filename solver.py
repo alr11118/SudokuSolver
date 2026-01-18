@@ -30,6 +30,8 @@ def solve(board):
         # If that value is valid add that to the board
         if valid(board, i, (row, column)): 
             board [row][column] = i
+            #printBoard(board)
+            #print("")
 
             # Call on solve again recursevly untill the board is solved
             if solve(board):
