@@ -3,8 +3,8 @@
 # Find one that works
 # Go to the next square and repeat
 # If cannot solve backtrack (go back a sept and do not put the same number)
-
-board = [
+sudoku_size = 2
+board1 = [
     [7, 0, 0, 0, 0, 1, 0, 0, 3],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -14,6 +14,13 @@ board = [
     [0, 0, 0, 0, 8, 0, 0, 0, 0],
     [0, 2, 0, 0, 0, 0, 0, 9, 0],
     [0, 0, 0, 2, 0, 0, 0, 0, 0]
+]
+
+board = [
+        [3, 0, 4, 0],
+        [0, 1, 0, 2],
+        [0, 4, 0, 3],
+        [2, 0, 1, 0]
 ]
 
 def solve(board):
@@ -45,13 +52,13 @@ def solve(board):
 def printBoard(board):
 
     for i in range (len(board)):
-        if i % 3 == 0 and i != 0:
+        if i % sudoku_size == 0 and i != 0:
             print("------------------------")
         for j in range (len(board[0])):
-            if j % 3 == 0 and j != 0:
+            if j % sudoku_size == 0 and j != 0:
                 print(" | ", end="")
 
-            if j == 8:
+            if j == (sudoku_size*sudoku_size -1):
                 print(board[i][j])
             else:
                 print(str(board[i][j]) + " ", end="")
@@ -76,10 +83,10 @@ def valid(board, number, position):
     
     # Check square
     # Figure out which box you are at
-    boxX = position[1] // 3
-    boxY = position[0] // 3
-    for i in range (boxY*3, boxY*3 + 3):
-        for j in range (boxX*3, boxX*3 + 3):
+    boxX = position[1] // sudoku_size
+    boxY = position[0] // sudoku_size
+    for i in range (boxY*sudoku_size, boxY*sudoku_size + sudoku_size):
+        for j in range (boxX*sudoku_size, boxX*sudoku_size + sudoku_size):
             if board[i][j] == number and (i, j) != position:
                 return False
     return True
