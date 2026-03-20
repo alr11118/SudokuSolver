@@ -15,6 +15,7 @@ headerText = headerFont.render("Welcome to my Sudoku Game!", 1, BLACK)
 gameFont = pygame.font.SysFont('Arial', 15, pygame.font.Font.bold)
 
 squares = [[None for _ in range(9)] for _ in range(9)] #creates a 9x9 structure
+""""
 gameBoard = [[9, 6, 0, 7, 0, 8, 0, 0, 5],
              [0, 0, 5, 0, 4, 0, 6, 0, 0],
              [0, 0, 0, 0, 0, 1, 0, 9, 0],
@@ -24,12 +25,13 @@ gameBoard = [[9, 6, 0, 7, 0, 8, 0, 0, 5],
              [5, 0, 0, 0, 0, 0, 0, 0, 3],
              [0, 0, 9, 0, 0, 0, 0, 8, 0],
              [8, 2, 0, 0, 0, 0, 0, 0, 9]]
+ """"
 sellectedSquare = None
 
 
 FPS = 60
 
-def printGameBoard():
+def printGameBoard(int[][] gameBoard):
     startX = 150
     startY = 150
     for row in range(0, 9):
@@ -63,18 +65,18 @@ def clickabilty(mousePos):
     sellectedSquare = None
     
 
-def drawScreen():
+def drawScreen(int[][] gameBoard):
     screen.fill(WHITE)
     screen.blit(headerText, (screenWidth//2 - headerText.get_width()//2, 10))
-    printGameBoard()
+    printGameBoard(gameBoard)
     if sellectedSquare != None:
         pygame.draw.rect(screen, GREEN, sellectedSquare, 2)
     pygame.display.update()
 
-def main():
+def main(int[][] gameBoard):
     clock = pygame.time.Clock()
     run = True
-    drawScreen()
+    drawScreen(gameBoard)
     while run:
         clock.tick(FPS)
         for event in pygame.event.get():
