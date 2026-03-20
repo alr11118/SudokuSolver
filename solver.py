@@ -1,3 +1,4 @@
+import visual
 # Pick Empthy Square
 # Try all numbers
 # Find one that works
@@ -50,6 +51,7 @@ def solve(board):
     return False
     
 def printBoard(board):
+    visual.main(board);
 
     for i in range (len(board)):
         if i % sudoku_size == 0 and i != 0:
