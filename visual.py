@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 pygame.font.init()
 
@@ -10,13 +12,13 @@ screenWidth, screenHeight = 1000, 750
 screen = pygame.display.set_mode((screenWidth, screenHeight))
 
 headerFont = pygame.font.SysFont('Arial', 20, pygame.font.Font.bold)
-headerText = headerFont.render("Welcome to my Sudoku Game!", 1, BLACK)
+headerText = headerFont.render("Welcome to my Sudoku Solver!", 1, BLACK)
 
 gameFont = pygame.font.SysFont('Arial', 15, pygame.font.Font.bold)
 
 squares = [[None for _ in range(9)] for _ in range(9)] #creates a 9x9 structure
-""""
-gameBoard = [[9, 6, 0, 7, 0, 8, 0, 0, 5],
+
+gameBoard1 = [[9, 6, 0, 7, 0, 8, 0, 0, 5],
              [0, 0, 5, 0, 4, 0, 6, 0, 0],
              [0, 0, 0, 0, 0, 1, 0, 9, 0],
              [0, 9, 0, 0, 0, 2, 5, 0, 0],
@@ -25,13 +27,13 @@ gameBoard = [[9, 6, 0, 7, 0, 8, 0, 0, 5],
              [5, 0, 0, 0, 0, 0, 0, 0, 3],
              [0, 0, 9, 0, 0, 0, 0, 8, 0],
              [8, 2, 0, 0, 0, 0, 0, 0, 9]]
- """"
+ 
 sellectedSquare = None
 
 
 FPS = 60
 
-def printGameBoard(int[][] gameBoard):
+def printGameBoard(gameBoard):
     startX = 150
     startY = 150
     for row in range(0, 9):
@@ -50,22 +52,9 @@ def printGameBoard(int[][] gameBoard):
         for column in range(1, 4):
             pygame.draw.rect(screen, BLACK, (150*column, 150*row, 150, 150), 3)
     pygame.draw.rect(screen, BLACK, (150, 150, 450, 450), 6)
-
-
-
-def clickabilty(mousePos):
-    global sellectedSquare
-    for row in squares:
-        for rect in row:
-            if rect.collidepoint(mousePos):
-                # Make that rectangle blue
-                sellectedSquare = rect
-                return 0
-                #pygame.draw.rect(screen, GREEN, rect, 2)
-    sellectedSquare = None
     
 
-def drawScreen(int[][] gameBoard):
+def drawScreen(gameBoard):
     screen.fill(WHITE)
     screen.blit(headerText, (screenWidth//2 - headerText.get_width()//2, 10))
     printGameBoard(gameBoard)
@@ -73,22 +62,18 @@ def drawScreen(int[][] gameBoard):
         pygame.draw.rect(screen, GREEN, sellectedSquare, 2)
     pygame.display.update()
 
-def main(int[][] gameBoard):
+def main(gameBoard):
     clock = pygame.time.Clock()
     run = True
-    drawScreen(gameBoard)
     while run:
         clock.tick(FPS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                run = False
                 pygame.quit()
-        
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                clickabilty(event.pos) # Get the mouse position (x, y)
+                sys.exit()
 
-        drawScreen()
-    pygame.quit()
+        drawScreen(gameBoard)
 
 if __name__ == "__main__":
     main()

@@ -1,11 +1,13 @@
 import visual
+import time
+
 # Pick Empthy Square
 # Try all numbers
 # Find one that works
 # Go to the next square and repeat
 # If cannot solve backtrack (go back a sept and do not put the same number)
-sudoku_size = 2
-board1 = [
+sudoku_size = 3
+board = [
     [7, 0, 0, 0, 0, 1, 0, 0, 3],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -17,7 +19,7 @@ board1 = [
     [0, 0, 0, 2, 0, 0, 0, 0, 0]
 ]
 
-board = [
+board4 = [
         [3, 0, 4, 0],
         [0, 1, 0, 2],
         [0, 4, 0, 3],
@@ -37,7 +39,9 @@ def solve(board):
     for i in range (1, len(board)+1):
         # If that value is valid add that to the board
         if valid(board, i, (row, column)): 
-            board [row][column] = i
+            board[row][column] = i
+            printBoard(board)
+            #time.sleep(0.05)
             #printBoard(board)
             #print("")
 
@@ -51,8 +55,9 @@ def solve(board):
     return False
     
 def printBoard(board):
-    visual.main(board);
+    visual.main(board)
 
+    """
     for i in range (len(board)):
         if i % sudoku_size == 0 and i != 0:
             print("------------------------")
@@ -64,6 +69,7 @@ def printBoard(board):
                 print(board[i][j])
             else:
                 print(str(board[i][j]) + " ", end="")
+    """
 
 def findEmpty(board):
     for i in range (len(board)):
