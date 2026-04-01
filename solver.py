@@ -19,13 +19,6 @@ board = [
     [0, 0, 0, 2, 0, 0, 0, 0, 0]
 ]
 
-board4 = [
-        [3, 0, 4, 0],
-        [0, 1, 0, 2],
-        [0, 4, 0, 3],
-        [2, 0, 1, 0]
-]
-
 def solve(board):
     # Finish the solve loop if the board is not comptleted
     # Find the first empty space
@@ -40,11 +33,8 @@ def solve(board):
         # If that value is valid add that to the board
         if valid(board, i, (row, column)): 
             board[row][column] = i
-            time.sleep(0.1)
+            time.sleep(0.01)
             printBoard(board)
-            #time.sleep(0.05)
-            #printBoard(board)
-            #print("")
 
             # Call on solve again recursevly untill the board is solved
             if solve(board):
@@ -52,7 +42,7 @@ def solve(board):
             
             # If the call to solve doest work backtarck by setting the last variable to 0
             board [row][column] = 0
-            time.sleep(0.1)
+            time.sleep(0.01)
             printBoard(board)
     # If the current call to solve cannot find a valid value return false to backtrack in the previus loop
     return False
