@@ -40,6 +40,7 @@ def solve(board):
         # If that value is valid add that to the board
         if valid(board, i, (row, column)): 
             board[row][column] = i
+            time.sleep(0.1)
             printBoard(board)
             #time.sleep(0.05)
             #printBoard(board)
@@ -51,11 +52,13 @@ def solve(board):
             
             # If the call to solve doest work backtarck by setting the last variable to 0
             board [row][column] = 0
+            time.sleep(0.1)
+            printBoard(board)
     # If the current call to solve cannot find a valid value return false to backtrack in the previus loop
     return False
     
 def printBoard(board):
-    visual.main(board)
+    visual.update(board)
 
     """
     for i in range (len(board)):
@@ -101,5 +104,7 @@ def valid(board, number, position):
 
 printBoard(board)
 solve(board)
-print(" ")
-printBoard(board)
+
+while True:
+    visual.update(board)
+
